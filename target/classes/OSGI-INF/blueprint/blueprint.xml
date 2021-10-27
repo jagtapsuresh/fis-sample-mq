@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd             
+	 http://camel.apache.org/schema/blueprint https://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<bean class="com.ibm.mq.jms.MQConnectionFactory"
+		id="connectionFactory">
+		<property name="transportType" value="1" />
+		<property name="hostName" value="mq-dev.corp.wabtec.com" />
+		<property name="port" value="1429" />
+		<property name="queueManager" value="MSGSVCDH" />
+		<property name="channel" value="B2BTRANSF.SVRCONN" />
+	</bean>
+	<bean class="org.apache.camel.component.jms.JmsComponent"
+		id="queuecomponent">
+		<property name="transacted" value="true" />
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="deliveryPersistent" value="false" />
+		<property name="concurrentConsumers" value="10" />
+		<property name="maxConcurrentConsumers" value="20" />
+		<property name="cacheLevelName" value="CACHE_CONSUMER" />
+		<property name="receiveTimeout" value="1000" />
+		<property name="recoveryInterval" value="1000" />
+	</bean>
+	<camelContext id="cbr-example-context"
+		xmlns="http://camel.apache.org/schema/blueprint">
+
+		<route id="queueRead">
+			<from id="_from1"
+				uri="queuecomponent:TRANS.EOA.RMD.B2B.INCIDENTS" />
+			<log id="_log5" message="Done processing ${body}" />
+		</route>
+	</camelContext>
+</blueprint>

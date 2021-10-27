@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1632100640248
+Build-Jdk: 1.8.0_181
+Built-By: pavan.pagadala
+Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
+Bundle-Description: Camel Content-Based Router Example
+Bundle-License: https://www.apache.org/licenses/LICENSE-2.0.html
+Bundle-ManifestVersion: 2
+Bundle-Name: Camel Content-Based Router Example [sample-mq]
+Bundle-SymbolicName: sample-mq
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Import-Package: com.ibm.mq.jms,org.apache.camel.component.jms;version="[
+ 2.21,3)",org.osgi.service.blueprint;version="[1.0.0,2.0.0)"
+Tool: Bnd-3.2.0.201605172007
