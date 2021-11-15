@@ -60,6 +60,15 @@
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
+    <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.mq</groupId>
+            <artifactId>com.ibm.mq.allclient</artifactId>
+            <version>9.0.4.0</version>
+        </dependency>
   </dependencies>
 
   <build>
